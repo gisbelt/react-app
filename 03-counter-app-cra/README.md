@@ -1,17 +1,3 @@
-# Introduction of JS for React
-
-If you want to run the program, you must rebuild the node modules, for that, run the following command in the project folder
-
-```
-npm install
-```
-
-# All the basics of javascript are in /src/bases, enjoy
-
-.
-.
-.
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
