@@ -28,7 +28,7 @@ FirstApp.propTypes = {
 }
 
 FirstApp.defaultProps = {
-    title: 'There is no title',
+    title: 'There is no title, add one',
 }
 
 // To return several elements is important group them in a parent node
