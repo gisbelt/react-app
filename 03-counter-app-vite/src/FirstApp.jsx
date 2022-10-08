@@ -10,17 +10,19 @@ const getAge = (a,b) =>{
     return a-b;
 }
 
-export const FirstApp = ( {title,subtitle} ) => {   
-
+const FirstApp = ( {title,subtitle} ) => {
     return (
         <>
         {/* <code>{ JSON.stringify( newMessage ) }</code> */}
-        <h1>{title} {subtitle}</h1>
-        <h2>My name is: Gisbel Torres</h2>
-        <h3>{ getAge(2022,1993) }</h3>
+        <h1>First App Here</h1>
+        <h2>{title} {subtitle}</h2>
+        <h3>My name is: Gisbel Torres</h3>
+        <h4>{ getAge(2022,1993) }</h4>
         </>
     )
 }
+
+export default FirstApp
 
 FirstApp.propTypes = {
     title: PropTypes.string.isRequired, //title must be string and required

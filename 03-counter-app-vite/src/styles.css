@@ -5,3 +5,14 @@ html,body{
     font-size: 1.3rem;
     padding: 70px;
 }
+
+button{
+    padding: 15px;
+    font-size: 1.3rem;
+    background-color: yellow;
+    margin-right: 5px;
+}
+button:hover{
+    cursor: pointer;
+    background-color: sandybrown;
+}
