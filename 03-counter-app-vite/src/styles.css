@@ -10,7 +10,7 @@ button{
     padding: 15px;
     font-size: 1.3rem;
     background-color: yellow;
-    margin-right: 5px;
+    margin-right: 6px;
 }
 button:hover{
     cursor: pointer;
