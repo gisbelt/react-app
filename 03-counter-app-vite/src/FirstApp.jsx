@@ -3,7 +3,7 @@ import PropTypes from 'prop-types' //first install prop-types: yarn add prop-typ
 
 const newMessage = {
     message: 'Hello',
-    title: 'Ok'
+    title: 'Ok',
 };
 
 const getAge = (a,b) =>{
