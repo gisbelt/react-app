@@ -3,12 +3,23 @@
 // "test": "jest --watchAll" 
 // Run: yarn test
 
-test('this test cant be fail', () => { 
-    if(1 === 0){
-        throw new Error('cannot be divided by zero')
-    }
+// describe: it is used to group the tests with a nice title 
+describe('Test in <DemoComponent />', () => { 
+    test('this test cant be fail', () => { 
+        // 1. initialization
+        const message1 = 'hello world';
+        
+        // 2 .stimulus
+        const message2 = message1.trim();
+    
+        // 3. Observe expected behavior (assertions)
+        expect( message1 ).toBe( message2 ) // toBe: used to say that it is equal to 
+        
+    })
 })
 
+
+ 
 // Watch Usage
 // Press f to run only failed tests.
 // Press o to only run tests related to changed files.
