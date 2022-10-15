@@ -1,4 +1,5 @@
-//First install de babel configuration:
+//You must have "jest" installed (see demo.test.js)
+//Now install de babel configuration:
 //yarn add --dev babel-jest @babel/core @babel/preset-env
 
 //Configure Babel to target your current version of Node by creating a babel.config.js file in the root of your project:
