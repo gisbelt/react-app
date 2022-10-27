@@ -1,23 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types' //first install prop-types: yarn add prop-types
 
-const newMessage = {
-    message: 'Hello',
-    title: 'Ok',
-};
-
 const getAge = (a,b) =>{
     return a-b;
 }
 
-const FirstApp = ( {title,subtitle} ) => {
+const FirstApp = ( { title, subtitle, name } ) => {
     return (
         <>
         {/* <code>{ JSON.stringify( newMessage ) }</code> */}
         <h1>First App Here</h1>
-        <h2>{title} {subtitle}</h2>
+        <h2 data-testid="test-title">{ title }</h2>
+        <p>{ subtitle }</p>
+        <p>{ name }</p>
         <h3>My name is: Gisbel Torres</h3>
-        <h4>{ getAge(2022,1993) }</h4>
+        <h4>My age is: { getAge(2022,1993) }</h4>
         </>
     )
 }
@@ -31,6 +28,8 @@ FirstApp.propTypes = {
 
 FirstApp.defaultProps = {
     title: 'There is no title, add one',
+    subtitle: 'There is no subtitle',
+    name: 'There is no name'
 }
 
 // To return several elements is important group them in a parent node

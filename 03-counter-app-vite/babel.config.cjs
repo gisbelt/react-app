@@ -5,9 +5,16 @@ module.exports = {
             {
                 targets: 
                 {
+                    esmodules: true,
                     node: 'current'
                 }
             }
-        ]
+        ],
+        [
+            '@babel/preset-react', 
+            {
+                runtime: 'automatic'
+            }
+        ],
     ],
 };
