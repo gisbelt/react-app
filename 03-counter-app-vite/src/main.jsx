@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* Components */}
         {/* <App/> */}
         <FirstApp title='Hello, Im Goku!' subtitle={ 123 } name='Carol'/>
-        {/* <CounterApp value={ 10 } /> */}
+        <CounterApp value={ 0 } />
     </React.StrictMode>
 )
 

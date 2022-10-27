@@ -7,7 +7,7 @@ const CounterApp = ({ value }) => {
 
     // Destructuring the return of that function.
     // If we want change the 'counter' value (that is 0), we will use 'setCounter' 
-    const  [ counter, setCounter ] = useState( 0 )
+    const  [ counter, setCounter ] = useState( value )
 
     const handleAdd = () =>{
         //First value is 0 (counter) and plus 1
@@ -19,7 +19,7 @@ const CounterApp = ({ value }) => {
         setCounter(counter - 1);
     }
     const handleReset = () =>{
-        setCounter(0);
+        setCounter(value);
     }
 
     return (
@@ -28,7 +28,7 @@ const CounterApp = ({ value }) => {
         <h2>{ counter }</h2>
         <button onClick={ handleAdd }>+1</button>
         <button onClick={ handleSubtract }>-1</button>
-        <button onClick={ handleReset }>Reset</button>
+        <button aria-label="btn-reset" onClick={ handleReset }>Reset</button>
         </>
     )
 }
