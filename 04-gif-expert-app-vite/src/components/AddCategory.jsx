@@ -15,7 +15,7 @@ export const AddCategory = ( {onNewValue} ) => {
         // validate that the input is not empty.
         if ( inputValue.trim().length <= 1 ) return;
                
-        // Better way, send new value through props
+        // send new value through props
         onNewValue( inputValue.trim() )
 
         // clean the input
