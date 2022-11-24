@@ -14,18 +14,16 @@ export const AddCategory = ( {onNewValue} ) => {
         // prevent the browser from refreshing when pressing enter
         event.preventDefault();
         // validate that the input is not empty.
-        if ( inputValue.trim().length <= 1 ) return;
-               
+        if ( inputValue.trim().length <= 1 ) return;               
         // send new value through props
         onNewValue( inputValue.trim() )
-
         // clean the input
         setInputValue('')
     }
 
     return (
         
-        <form onSubmit={ (event) => onSubmit(event) }>
+        <form onSubmit={ (event) => onSubmit(event) } aria-label='form'>
             <input 
                 type="text"
                 placeholder="search gifs"
