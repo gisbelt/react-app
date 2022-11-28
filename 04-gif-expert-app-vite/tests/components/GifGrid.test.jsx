@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { GifGrid } from "../../src/components";
 import { useFetchGifs } from "../../src/hooks/useFetchGifs";
 
+// before rendering our component, remember to set the hook path
 jest.mock('../../src/hooks/useFetchGifs')
 
 describe('Testing component <GifGrid />', () => { 
@@ -9,6 +10,7 @@ describe('Testing component <GifGrid />', () => {
     const category = 'DragonBall';
 
     test('should display loading message first', () => { 
+        //The images come as an empty array, and the isLoading will be set to true by default.
         useFetchGifs.mockReturnValue({
             images: [],
             isLoading: true,
@@ -20,6 +22,7 @@ describe('Testing component <GifGrid />', () => {
     })
 
     test('should display items when images are uploaded through useFetchGifs', () => {  
+        //Create the object of the images to suppose that this is what is returning the "useFetchGifs".
         const gifs = [
             {
                 id: 'ABC',
@@ -34,7 +37,7 @@ describe('Testing component <GifGrid />', () => {
         ]
         useFetchGifs.mockReturnValue({
             images: gifs,
-            isLoading: false,
+            isLoading: false, // When we already have the images, the "isLoading" will be false.
         });
 
         render( <GifGrid category={ category } /> );
