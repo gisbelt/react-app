@@ -6,6 +6,7 @@ export const CounterApp = () => {
         counter2: 20,
         counter3: 30,
     })
+    //destructuring
     const {counter1, counter2, counter3} = counter
 
     return (
