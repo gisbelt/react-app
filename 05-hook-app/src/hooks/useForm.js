@@ -15,9 +15,15 @@ export const useForm = ( initialForm = {} ) => {
         })
     }
 
+    //reset form
+    const onResetForm = () => {
+        setFormState( initialForm )
+    }
+
     return {
         ...formState, //part of the object that the useForm is returning so that it can be unstructured.
         formState,
         onInputChange,
+        onResetForm,
     }
 }
