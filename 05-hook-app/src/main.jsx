@@ -10,14 +10,15 @@ import ReactDOM from 'react-dom/client'
 // import { CallbackHook } from './06-memo/CallbackHook'
 // import { MemoHook } from './06-memo/MemoHook'
 // import { Memorize } from './06-memo/Memorize'
-import { Father } from './07-task-memo/Father'
-import './08-useReducer/intro-reducer'
+// import { Father } from './07-task-memo/Father'
+// import './08-useReducer/intro-reducer'
+import { TodoApp } from './08-useReducer/TodoApp'
 // import { HooksApp } from './HooksApp'
 
 import './index.css'
 
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
-//     <Father />
-//   </React.StrictMode>
-// )
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <TodoApp />
+  </React.StrictMode>
+)
