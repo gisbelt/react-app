@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const useForm = ( initialForm = {} ) => {
     
     // initialForm: which by default will be an object. 
     const [formState, setFormState] = useState( initialForm )
+    const inputRef = useRef();
 
     //change input
     const onInputChange = ({ target }) => {
@@ -18,6 +19,7 @@ export const useForm = ( initialForm = {} ) => {
     //reset form
     const onResetForm = () => {
         setFormState( initialForm )
+        inputRef.current.focus();
     }
 
     return {
@@ -25,5 +27,6 @@ export const useForm = ( initialForm = {} ) => {
         formState,
         onInputChange,
         onResetForm,
+        inputRef,
     }
 }
