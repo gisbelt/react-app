@@ -37,13 +37,22 @@ export const TodoApp = () => {
         dispatch( actionDelete );
     }
 
+    // Mark as read
+    const handleToggleTodo = ( id ) => {
+        const actionToggle = {
+            type: 'Toggle Todo',
+            payload: id,
+        } 
+        dispatch( actionToggle );
+    }
+
     return (
         <>
             <h1>Todo App 10, <small className="text-danger">to do: 2</small></h1>
             <hr />
             <div className="row">
                 <div className="col-7">
-                    <TodoList todos={ state } onRemoveTodo={ handleDeleteTodo }/>                 
+                    <TodoList todos={ state } onRemoveTodo={ handleDeleteTodo } onToggleTodo={ handleToggleTodo }/>                 
                 </div>
                 
                 <div className="col-5">
