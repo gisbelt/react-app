@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { HeroesApp } from './HeroesApp'
 import './index.css'
+import { AppRoutes } from './routes/AppRoutes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HeroesApp />
+    <AppRoutes />
   </React.StrictMode>,
 )
