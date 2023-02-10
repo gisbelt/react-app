@@ -28,7 +28,7 @@ export const HeoresRoutesChildren = [
     errorElement: <div>Here error page</div>
   },
   {
-    path: "/hero",
+    path: "/hero/:heroId", //params heroId
     element: <HeroPage />,
     errorElement: <div>Here error page</div>
   },

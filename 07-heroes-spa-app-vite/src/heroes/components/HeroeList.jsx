@@ -1,5 +1,6 @@
 import React from 'react'
 import { getHeroesByPublisher } from '../helpers/getHeroesByPublisher'
+import { HeroeCard } from './HeroeCard'
 
 export const HeroeList = ({ publisher }) => {
 
@@ -7,15 +8,16 @@ export const HeroeList = ({ publisher }) => {
     
     return (
         <>
-            <ul >
+            <div className='row row-cols-1 row-cols-md-3 g-3'>
                 {
                     heroes.map((item, index) => (
-                        <li key={item.id}>
-                            {item.superhero}
-                        </li>
+                        <HeroeCard 
+                            key={ item.id }
+                            {... item} //spread operator to receive props
+                        />
                     ))
                 }
-            </ul>
+            </div>
         </>
     )
 }
