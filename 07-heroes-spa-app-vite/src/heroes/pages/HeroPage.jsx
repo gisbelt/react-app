@@ -11,9 +11,10 @@ export const HeroPage = () => {
   const getHero = useMemo( () => getHeroById( heroId ), [heroId]); 
 
   const onReturn = () => {
-    getHero.publisher === 'Marvel Comics' 
-    ? navigate('/marvel')
-    : navigate('/dc') 
+    // getHero.publisher === 'Marvel Comics' 
+    // ? navigate('/marvel')
+    // : navigate('/dc') 
+    navigate(-1)
   }
 
   // if we don't get a hero, redirect 
