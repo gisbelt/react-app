@@ -27,11 +27,11 @@ export const HeroPage = () => {
         <img 
           src={`/assets/heroes/${ getHero.id }.jpg`} 
           alt={ getHero.superhero } 
-          className="img img-thumbnail"
+          className="img img-thumbnail animate__animated animate__fadeInLeft"
         />
       </div>
 
-      <div className="col-8">
+      <div className="col-8 animate__animated animate__fadeInRight">
         <h3>{ getHero.superhero }</h3>
 
         <h5 className="mt-3">Details</h5>
