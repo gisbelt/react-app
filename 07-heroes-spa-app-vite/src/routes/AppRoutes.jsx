@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import { LoginPage } from '../auth/pages';
 import { HeoresRoutes, HeoresRoutesChildren } from '../heroes';
+import { PrivateRoute } from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/", 
-    element: <HeoresRoutes />,
+    element: <PrivateRoute> <HeoresRoutes /> </PrivateRoute>,
     children: HeoresRoutesChildren,
     errorElement: <div>Here error page</div>
   }  
