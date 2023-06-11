@@ -8,5 +8,5 @@ export const PublicRoute = ({ children }) => {
 
 	return (!authState.logged)
 		? children
-		: <Navigate to={ -1 } />
+		: <Navigate to="/marvel" />
 }
