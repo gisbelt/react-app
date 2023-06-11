@@ -6,11 +6,12 @@ import {
 import { LoginPage } from '../auth/pages';
 import { HeoresRoutes, HeoresRoutesChildren } from '../heroes';
 import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 const router = createBrowserRouter([
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <PublicRoute> <LoginPage /> </PublicRoute>,
     errorElement: <div>Here error page</div>
   },
   {
