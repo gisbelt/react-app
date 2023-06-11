@@ -7,7 +7,7 @@ export const authReducer = () => (state = {}, action) => {
 			return {
 				...state, //it is useful to keep the previous state in case we want to add more properties to our state.
 				logged: true,
-				name: action.payload
+				user: action.payload
 			}
 
 		case types.logout:

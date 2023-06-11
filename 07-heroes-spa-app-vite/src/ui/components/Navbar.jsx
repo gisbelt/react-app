@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../auth/context/AuthContext'
 
 export const Navbar = () => {
 
-    const navigate = useNavigate()
+    const { authState } = useContext( AuthContext );
+    const navigate = useNavigate();
 
     const onLogout = () => {
         navigate('/login', {
@@ -53,7 +55,7 @@ export const Navbar = () => {
                     className={`nav-item nav-link text-info`}
                     to="/login"
                 >
-                    Gisbel
+                    { authState.user?.name }
                 </span>
 
                 <button
