@@ -1,6 +1,8 @@
 import { TurnedInNot } from "@mui/icons-material"
 import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from "@mui/material"
 
+const sideBarItems = ['Enero', 'Febrero', 'Marzo', 'Abril'];
+
 export const SideBar = ({ drawerWidth }) => {
 	return (
 		<Box
@@ -26,7 +28,7 @@ export const SideBar = ({ drawerWidth }) => {
 
 				<List>
 					{
-						['Enero', 'Febrero', 'Marzo', 'Abril'].map((item, index) => (
+						sideBarItems.map((item, index) => (
 							<ListItem key={ index } disablePadding>
 								<ListItemButton>
 									<ListItemIcon>
