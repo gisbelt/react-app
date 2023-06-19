@@ -10,6 +10,7 @@ function App() {
 
 	const byAmount = () => {
 		dispatch(incrementByAmount(2))
+		// dispatch(incrementByAmount({ name: 'Gisbel Torres'}))
 	}
 
 	return (
