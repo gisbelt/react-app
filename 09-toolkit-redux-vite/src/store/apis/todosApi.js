@@ -8,11 +8,15 @@ export const todosApi = createApi({
 	}),
 	endpoints: (builder) => ({
 		getTodos: builder.query({
-			query: (query) => '/todos', // take the baseUrl and concatenate it '/todos'.
+			query: () => '/todos', // take the baseUrl and concatenate it '/todos'.
+		}),
+
+		getTodoById: builder.query({
+			query: (todoId) => `/todos/${ todoId }`, // take the baseUrl and concatenate it '/todos'.
 		})
 	})
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetTodosQuery } = todosApi;
+export const { useGetTodosQuery, useGetTodoByIdQuery } = todosApi;
