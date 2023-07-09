@@ -1,12 +1,22 @@
 import { MenuOutlined } from "@mui/icons-material"
 import { AppBar, Avatar, Button, Grid, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material"
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { startLogout } from "../../store/auth/thunks";
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+	{ title: "Profile", path: "/profile" },
+	{ title: "Account", path: "/account" },
+	{ title: "Dashboard", path: "/dashboard" },
+];
 
 export const NavBar = ({ drawerWidth }) => {
 
+	const dispatch = useDispatch()
+	const { photoURL } = useSelector(state => state.auth )
+
+	console.log(photoURL);
   	const [anchorElUser, setAnchorElUser] = useState(null);
 
 	const handleOpenUserMenu = (event) => {
@@ -17,10 +27,8 @@ export const NavBar = ({ drawerWidth }) => {
 		setAnchorElUser(null);
 	};
 
-	const handleClick = () => {
-		if (settings.includes('Logout')) {
-			<Navigate to="/auth" />
-		}
+	const handleLogout = () => {
+		dispatch( startLogout() );
 	}
 
 	return (
@@ -51,7 +59,7 @@ export const NavBar = ({ drawerWidth }) => {
 
 					<Tooltip title="Open settings">
 						<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-							<Avatar alt="Remy Sharp" src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e" />
+							<Avatar alt="Avatar" src={`${photoURL}`} />
 						</IconButton>
 					</Tooltip>
 					<Menu
@@ -70,11 +78,14 @@ export const NavBar = ({ drawerWidth }) => {
 						open={Boolean(anchorElUser)}
 						onClose={handleCloseUserMenu}
 					>
-						{settings.map((setting) => (
-							<MenuItem key={setting} onClick={handleCloseUserMenu}>
-								<Link to={ handleClick } >{setting}</Link>
+						{settings.map((setting, index) => (
+							<MenuItem key={index} onClick={handleCloseUserMenu}>
+								<Link to={ setting.path } >{setting.title}</Link>
 							</MenuItem>
 						))}
+						<MenuItem onClick={handleCloseUserMenu}>
+							<Link type="button" onClick={ handleLogout }>Logout</Link>
+						</MenuItem>
 					</Menu>
 				</Grid>
 			</Toolbar>
