@@ -16,7 +16,6 @@ export const NavBar = ({ drawerWidth }) => {
 	const dispatch = useDispatch()
 	const { photoURL } = useSelector(state => state.auth )
 
-	console.log(photoURL);
   	const [anchorElUser, setAnchorElUser] = useState(null);
 
 	const handleOpenUserMenu = (event) => {
