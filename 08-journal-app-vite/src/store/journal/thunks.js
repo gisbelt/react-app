@@ -1,6 +1,7 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { addNewEmptyNote, savingNewNote, setActiveNote } from "./journalSlice";
+import { loadNotes } from "../../journal/helpers";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setNote } from "./journalSlice";
 
 export const startNewNote = () => {
 	return async ( dispatch, getState ) => {
@@ -25,5 +26,18 @@ export const startNewNote = () => {
 		// dispatch
 		dispatch( addNewEmptyNote(newNote) );
 		dispatch( setActiveNote(newNote) )
+	}
+}
+
+export const startLoadingNote = () => {
+	return async( dispatch, getState ) => {
+		// get user id
+		const { uid } = getState().auth;
+		if ( !uid ) throw new Error('User uid is not set') // it should not happen
+
+		// get notes 
+		const notes = await loadNotes( uid );
+		// dispatch
+		dispatch( setNote(notes) )
 	}
 }
