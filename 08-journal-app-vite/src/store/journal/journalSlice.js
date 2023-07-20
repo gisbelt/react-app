@@ -11,17 +11,21 @@ import { createSlice } from '@reduxjs/toolkit';
 export const journalSlice = createSlice({
 	name: 'journal',
 	initialState: {
-		isSaving: true,
+		isSaving: false,
 		messageSaved: '', 
 		notes: [],
 		active: null,
 	},
 	reducers: {
+		savingNewNote: ( state ) => {
+			state.isSaving = true;
+		},
 		addNewEmptyNote: ( state, action ) => {
-	
+			state.notes.push( action.payload );
+			state.isSaving = false;
 		},
 		setActiveNote: ( state, action ) => {
-	
+			state.active = action.payload;
 		},
 		setNote: ( state, action ) => {
 	
@@ -40,6 +44,7 @@ export const journalSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { 
+	savingNewNote,
 	addNewEmptyNote, // create a new entry
 	setActiveNote, // set what is the active note
 	setNote, // load notes when we have already read them from somewhere else
