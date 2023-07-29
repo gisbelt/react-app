@@ -1,7 +1,7 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { loadNotes } from "../../journal/helpers";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNote } from "./journalSlice";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setNote, setSaving, updatedNote } from "./journalSlice";
 
 export const startNewNote = () => {
 	return async ( dispatch, getState ) => {
@@ -39,5 +39,26 @@ export const startLoadingNote = () => {
 		const notes = await loadNotes( uid );
 		// dispatch
 		dispatch( setNote(notes) )
+	}
+}
+
+export const startSaveNote = () => {
+	return async( dispatch, getState ) => {
+		dispatch( setSaving() );
+		
+		const { uid } = getState().auth;
+		const { active: note } = getState().journal;
+
+		// Remove id property of the note object so as not to create a new note in firestore
+		// The delete operator removes a given property from an object
+		const noteToFirestore = { ...note }		
+		delete noteToFirestore.id; 
+
+		// Referencia al documento en firebase (no usar noteToFirestore porque eliminamos el id)
+		const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
+		// Impact database 
+		await setDoc( docRef, noteToFirestore, { merge: true } )
+		// Update note locally 
+		dispatch( updatedNote(note) )
 	}
 }

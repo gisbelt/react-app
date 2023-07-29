@@ -31,10 +31,19 @@ export const journalSlice = createSlice({
 			state.notes = action.payload;
 		},
 		setSaving: ( state ) => {
-			// state.isSaving = true
+			state.isSaving = true
+			// TODO: message error 
 		},
-		updateNote: ( state, action ) => {
-	
+		updatedNote: ( state, action ) => {
+			state.isSaving = false
+			state.notes = state.notes.map( note => {
+				if( note.id === action.payload.id ){
+					return action.payload;
+				}
+				return note;
+			})
+
+			//TODO: message updated
 		},
 		deleteNoteById: ( state, action ) => {
 	
@@ -49,6 +58,6 @@ export const {
 	setActiveNote, // set what is the active note
 	setNote, // load notes when we have already read them from somewhere else
 	setSaving, // do something when we are recording the notes
-	updateNote, // update a note
+	updatedNote, // update a note
 	deleteNoteById, // delete a note, the objective would be to remove it from our list.
 } = journalSlice.actions
