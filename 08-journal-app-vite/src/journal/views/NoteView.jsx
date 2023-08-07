@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "../../hooks/useForm"
 import { ImageGallery } from "../components"
 import { setActiveNote, startSaveNote } from "../../store/journal"
+import { Toaster, toast } from 'sonner'
 
 export const NoteView = () => {
 
 	const dispatch = useDispatch();
-	const { active: note } = useSelector( state => state.journal );
+	const { active: note, messageSaved } = useSelector( state => state.journal );
 	const { body, title, date, onInputChange, formState } = useForm(note);
 
 	const dateString = useMemo( () => {
@@ -20,6 +21,12 @@ export const NoteView = () => {
 	useEffect(() => {
 		dispatch( setActiveNote(formState) );
 	}, [formState])
+
+	useEffect(() => {
+		if( messageSaved.length > 0 ) {
+			toast.success(`${messageSaved}`)
+		}
+	}, [messageSaved])
 	
 	const onSaveNote = () => {
 		dispatch( startSaveNote() );
@@ -27,6 +34,8 @@ export const NoteView = () => {
 
 	return (
 		<Grid container direction='row' justifyContent='space-between' alignItems='center' sx={{ mb: 1 }}>
+			<Toaster position="bottom-right" richColors expand={true} closeButton />
+
 			<Grid item>
 				<Typography fontSize={ 39 } fontWeight='light'>{ dateString }</Typography>
 			</Grid>
