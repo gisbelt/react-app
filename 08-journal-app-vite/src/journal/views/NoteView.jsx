@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef } from "react"
-import { SaveOutlined, UploadOutlined } from "@mui/icons-material"
+import { DeleteOutline, SaveOutlined, UploadOutlined } from "@mui/icons-material"
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "../../hooks/useForm"
 import { ImageGallery } from "../components"
-import { setActiveNote, startSaveNote, startUploadingFiles } from "../../store/journal"
+import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from "../../store/journal"
 import { Toaster, toast } from 'sonner'
 
 export const NoteView = () => {
@@ -22,11 +22,11 @@ export const NoteView = () => {
 		dispatch( setActiveNote(formState) );
 	}, [formState])
 
-	useEffect(() => {
-		if( messageSaved.length > 0 ) {
-			toast.success(`${messageSaved}`)
-		}
-	}, [messageSaved])
+	// useEffect(() => {
+	// 	if( messageSaved.length > 0 ) {
+	// 		toast.success(`${messageSaved}`)
+	// 	}
+	// }, [messageSaved])
 	
 	const onSaveNote = () => {
 		dispatch( startSaveNote() );
@@ -38,9 +38,13 @@ export const NoteView = () => {
 		dispatch( startUploadingFiles(target.files) )
 	}
 
+	const onDelete = () => {
+		dispatch( startDeletingNote() );
+	}
+
 	return (
 		<Grid container direction='row' justifyContent='space-between' alignItems='center' sx={{ mb: 1 }}>
-			<Toaster position="bottom-right" richColors expand={true} closeButton />
+			{/* <Toaster position="bottom-right" richColors expand={true} closeButton /> */}
 
 			<Grid item>
 				<Typography fontSize={ 39 } fontWeight='light'>{ dateString }</Typography>
@@ -100,6 +104,15 @@ export const NoteView = () => {
 				/>
 			</Grid>
 
+			<Grid container justifyContent='end'>
+				<Button
+					onClick={ onDelete }
+				>
+					<DeleteOutline />
+					Delete
+				</Button>
+
+			</Grid>
 			{/* Image gallery  */}
 			<ImageGallery images={ note.imageUrls } />
 		</Grid>

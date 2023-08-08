@@ -1,7 +1,7 @@
-import { collection, doc, setDoc } from "firebase/firestore/lite";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { fileUplaod, loadNotes } from "../../journal/helpers";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNote, setPhotosToActiveNote, setSaving, updatedNote } from "./journalSlice";
+import { addNewEmptyNote, deleteNoteById, savingNewNote, setActiveNote, setNote, setPhotosToActiveNote, setSaving, updatedNote } from "./journalSlice";
 
 export const startNewNote = () => {
 	return async ( dispatch, getState ) => {
@@ -55,7 +55,7 @@ export const startSaveNote = () => {
 		const noteToFirestore = { ...note }		
 		delete noteToFirestore.id; 
 
-		// Referencia al documento en firebase (no usar noteToFirestore porque eliminamos el id)
+		// Reference to the document in firebase (do not use noteToFirestore because we remove the id)
 		const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
 		// Impact database 
 		await setDoc( docRef, noteToFirestore, { merge: true } )
@@ -77,5 +77,19 @@ export const startUploadingFiles = ( files = [] ) => {
 		// Solve all promises simultaneously
 		const photosUrls = await Promise.all( fileUploadPromises );
 		dispatch( setPhotosToActiveNote(photosUrls) )
+	}
+}
+
+export const startDeletingNote = () => {
+	return async( dispatch, getState ) => {
+		const { uid } = getState().auth;
+		const { active: note } = getState().journal;
+		
+		// Reference to the document in firebase
+		const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
+		// Delete from firebase
+		await deleteDoc( docRef );
+		// Delete active note and note array locally
+		dispatch( deleteNoteById( note.id ));
 	}
 }
