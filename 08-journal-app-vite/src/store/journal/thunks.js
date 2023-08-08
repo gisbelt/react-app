@@ -1,7 +1,7 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { loadNotes } from "../../journal/helpers";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNote, setSaving, updatedNote } from "./journalSlice";
+import { fileUplaod, loadNotes } from "../../journal/helpers";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setNote, setPhotosToActiveNote, setSaving, updatedNote } from "./journalSlice";
 
 export const startNewNote = () => {
 	return async ( dispatch, getState ) => {
@@ -60,5 +60,21 @@ export const startSaveNote = () => {
 		await setDoc( docRef, noteToFirestore, { merge: true } )
 		// Update note locally 
 		dispatch( updatedNote(note) )
+	}
+}
+
+export const startUploadingFiles = ( files = [] ) => {
+	return async( dispatch ) => {
+		dispatch( setSaving() );
+
+		// Array of all the promises we want to shoot
+		const fileUploadPromises = [];
+		for( const file of files ) {
+			fileUploadPromises.push( fileUplaod(file) )
+		}
+
+		// Solve all promises simultaneously
+		const photosUrls = await Promise.all( fileUploadPromises );
+		dispatch( setPhotosToActiveNote(photosUrls) )
 	}
 }

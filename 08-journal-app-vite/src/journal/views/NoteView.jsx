@@ -4,7 +4,7 @@ import { Button, Grid, IconButton, TextField, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "../../hooks/useForm"
 import { ImageGallery } from "../components"
-import { setActiveNote, startSaveNote } from "../../store/journal"
+import { setActiveNote, startSaveNote, startUploadingFiles } from "../../store/journal"
 import { Toaster, toast } from 'sonner'
 
 export const NoteView = () => {
@@ -35,8 +35,7 @@ export const NoteView = () => {
 	const fileInputRef = useRef()
 	const onFileInputChange = ({ target }) => {
 		if(target.files === 0) return
-		console.log("subiendo archivos");
-		// dispatch( startUploadingFiles(target.files) )
+		dispatch( startUploadingFiles(target.files) )
 	}
 
 	return (
@@ -65,6 +64,7 @@ export const NoteView = () => {
 
 				<Button 
 					onClick={ onSaveNote }
+					disabled={ isSaving }
 					color='primary' 
 					sx={{ padding: 2 }}
 				>

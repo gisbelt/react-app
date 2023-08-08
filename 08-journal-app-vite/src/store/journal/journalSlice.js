@@ -43,7 +43,11 @@ export const journalSlice = createSlice({
 				}
 				return note;
 			})
-			state.messageSaved = `${action.payload.title}, actualizada correctamente`
+			state.messageSaved = `Note: ${action.payload.title}, properly updated`
+		},
+		setPhotosToActiveNote: ( state, action ) => {
+			state.active.imageUrls = [ ...state.active.imageUrls, ...action.payload ];
+			state.isSaving = false;
 		},
 		deleteNoteById: ( state, action ) => {
 	
@@ -59,5 +63,6 @@ export const {
 	setNote, // load notes when we have already read them from somewhere else
 	setSaving, // do something when we are recording the notes
 	updatedNote, // update a note
+	setPhotosToActiveNote, 
 	deleteNoteById, // delete a note, the objective would be to remove it from our list.
 } = journalSlice.actions
