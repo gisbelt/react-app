@@ -1,6 +1,6 @@
-import { useEffect, useMemo } from "react"
-import { SaveOutlined } from "@mui/icons-material"
-import { Button, Grid, TextField, Typography } from "@mui/material"
+import { useEffect, useMemo, useRef } from "react"
+import { SaveOutlined, UploadOutlined } from "@mui/icons-material"
+import { Button, Grid, IconButton, TextField, Typography } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "../../hooks/useForm"
 import { ImageGallery } from "../components"
@@ -10,7 +10,7 @@ import { Toaster, toast } from 'sonner'
 export const NoteView = () => {
 
 	const dispatch = useDispatch();
-	const { active: note, messageSaved } = useSelector( state => state.journal );
+	const { active: note, messageSaved, isSaving } = useSelector( state => state.journal );
 	const { body, title, date, onInputChange, formState } = useForm(note);
 
 	const dateString = useMemo( () => {
@@ -32,6 +32,13 @@ export const NoteView = () => {
 		dispatch( startSaveNote() );
 	}
 
+	const fileInputRef = useRef()
+	const onFileInputChange = ({ target }) => {
+		if(target.files === 0) return
+		console.log("subiendo archivos");
+		// dispatch( startUploadingFiles(target.files) )
+	}
+
 	return (
 		<Grid container direction='row' justifyContent='space-between' alignItems='center' sx={{ mb: 1 }}>
 			<Toaster position="bottom-right" richColors expand={true} closeButton />
@@ -41,6 +48,21 @@ export const NoteView = () => {
 			</Grid>
 
 			<Grid item>
+
+				<input 
+					type="file"
+					ref={ fileInputRef }
+					multiple
+					onChange={ onFileInputChange }
+					style={{ display: 'none' }}
+				/>
+				<IconButton 
+					color="primary" disabled={ isSaving }
+					onClick={ () => fileInputRef.current.click() }
+				>
+					<UploadOutlined />
+				</IconButton>
+
 				<Button 
 					onClick={ onSaveNote }
 					color='primary' 
