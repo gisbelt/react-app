@@ -23,6 +23,10 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         createValidators();       
     }, [formState])
 
+    useEffect(() => {
+        setFormState( initialForm );       
+    }, [initialForm])
+
     // We will store the value y that value should change only if the formValidation changes. 
     const isFormValid = useMemo( () => {
         for (const formValue of Object.keys( formValidation )) {
