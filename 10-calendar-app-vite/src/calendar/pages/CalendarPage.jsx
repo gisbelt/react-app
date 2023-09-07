@@ -1,9 +1,9 @@
+import { useState } from 'react'
 import { Calendar } from 'react-big-calendar'
 import { localizer, getMessagesES } from '../../helpers'
 import { addHours } from 'date-fns'
-import { CalendarEventBox, Navbar } from '../'
+import { CalendarEventBox, CalendarModal, Navbar } from '../'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { useState } from 'react'
 
 const events = [{
 	title: 'Birdthday',
@@ -24,7 +24,7 @@ export const CalendarPage = () => {
 		const style = {
 			backgroundColor: '#347C99',
 			borderRadius: '0px',
-			opacity: 0.8,
+			opacity: 0.7,
 			color: 'white',
 		}
 		
@@ -64,6 +64,8 @@ export const CalendarPage = () => {
 				onSelectEvent={onSelected}
 				onView={onViewChanged}
 			/>
+
+			<CalendarModal />
 		</>
 	)
 }
