@@ -1,5 +1,6 @@
 import { addHours, differenceInSeconds } from 'date-fns';
 import { useMemo, useState } from 'react';
+import { useUiStore } from '../../hooks';
 import Swal from 'sweetalert2'
 import Modal from 'react-modal';
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -23,7 +24,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export const CalendarModal = () => {
-	const [isOpen, setIsOpen] = useState(true)
+	const { isDateModalOpen, closeDateModal } = useUiStore()
 	const [formSubmitted, setFormSubmitted] = useState(false)
 	const [formValues, setFormValues] = useState({
 		title: '',
@@ -73,14 +74,10 @@ export const CalendarModal = () => {
 		//remover errores en pantalla
 	}
 
-	const onCloseModal = () => {
-		setIsOpen(false)
-	}
-
 	return (
 		<Modal 
-			isOpen={ isOpen }
-			onRequestClose={ onCloseModal }
+			isOpen={ isDateModalOpen }
+			onRequestClose={ closeDateModal }
 			style={ customStyles}
 			className='modal'
 			overlayClassName="bg-modal"
@@ -151,7 +148,7 @@ export const CalendarModal = () => {
 					className="btn btn-outline-primary btn-block mt-2"
 				>
 					<i className="far fa-save"></i>
-					<span> Guardar</span>
+					<span> Save</span>
 				</button>
 
 			</form>
