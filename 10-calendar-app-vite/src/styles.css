@@ -51,5 +51,12 @@
   right: 25px;
   z-index: 99;
 }
+.fab-danger {
+  bottom: 25px;
+  font-size: 25px;
+  position: fixed;
+  left: 25px;
+  z-index: 99;
+}
 
 /* FAB  */
