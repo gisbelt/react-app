@@ -42,3 +42,13 @@
 .react-datepicker-wrapper {
   width: 100%;
 }
+
+/* FAB  */
+.fab {
+  bottom: 25px;
+  font-size: 25px;
+  position: fixed;
+  right: 25px;
+}
+
+/* FAB  */
