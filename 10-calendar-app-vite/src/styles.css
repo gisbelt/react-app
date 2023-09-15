@@ -49,6 +49,7 @@
   font-size: 25px;
   position: fixed;
   right: 25px;
+  z-index: 99;
 }
 
 /* FAB  */
